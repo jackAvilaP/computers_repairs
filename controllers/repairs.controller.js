@@ -30,6 +30,7 @@ const getRepairById = catchAsync(async (req, res, next) => {
 });
 
 const newRepair = catchAsync(async (req, res, next) => {
+   
     const { date,computerNumber ,comments ,status,userId } = req.body;
 
     const newRepair = await Repair.create({
@@ -46,13 +47,17 @@ const newRepair = catchAsync(async (req, res, next) => {
 const updateRepair = catchAsync(async (req, res, next) => {
     const { repair } = req;
 
-    await Repair.update({status:'completed'})
+    await repair.update({ status:'completed' })
+
+    res.status(200).json({ status: 'success' })
 });
 
 const deleteRepair = catchAsync(async(req,res,next)=>{
     const { repair } = req;
 
-    await Repair.update({status:'cancelled'})
+    await repair.update({status:'cancelled'});
+
+    res.status(200).json({ status: 'success' });
 })
 module.exports = {
     getAllEquipment,

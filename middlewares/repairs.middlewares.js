@@ -9,7 +9,7 @@ const repairExists = catchAsync(async (req, res, next) => {
     const { id } = req.params;
 
     const repair = await Repair.findOne({
-        where: { id, status: 'pending' }
+        where: { id, status: 'pending' },
     });
 
     if (!repair) {
